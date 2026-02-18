@@ -1,6 +1,6 @@
 const EVOLUTION_API_URL = process.env.VITE_EVOLUTION_API_URL || 'http://localhost:8080';
 const EVOLUTION_API_KEY = process.env.VITE_EVOLUTION_API_KEY || 'replace_with_your_api_key';
-const INSTANCE_NAME = 'Watami';
+const INSTANCE_NAME = 'watami';
 
 class EvolutionApiService {
     async _send(endpoint, body) {

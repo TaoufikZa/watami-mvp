@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"nft","buildData":{"runtimeAPIVersion":1},"mainFile":"/Users/kenzup/.gemini/antigravity/scratch/watami/netlify/functions/api.js","name":"api","priority":10,"path":"/Users/kenzup/.gemini/antigravity/scratch/watami/.netlify/functions/api.zip","runtime":"js"}],"system":{"arch":"arm64","platform":"darwin"},"timestamp":1771455465429,"version":1}
