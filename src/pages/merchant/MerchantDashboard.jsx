@@ -15,6 +15,7 @@ import {
     Plus
 } from 'lucide-react';
 import { mockBackend } from '../../services/mockBackend';
+import { evolutionApi } from '../../services/evolutionApi';
 import { formatPrice } from '../../lib/utils';
 import './Merchant.css';
 
@@ -104,7 +105,17 @@ const OrderCard = ({ order, onAction }) => {
             }
 
             if (message) {
-                // Modified: Use mockBackend API instead of direct localStorage
+                // Try to send real WhatsApp if evolutionApi is configured
+                try {
+                    // Send real WhatsApp notification if we have a phone number
+                    if (order.user_phone) {
+                        await evolutionApi.sendText(order.user_phone, message);
+                    }
+                } catch (apiErr) {
+                    console.warn("Real WhatsApp notification failed", apiErr);
+                }
+
+                // Keep logging to internal simulator for backward compatibility/demo
                 await mockBackend.sendWAMessage({
                     id: Date.now(),
                     text: message,
