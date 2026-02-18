@@ -1,86 +1,110 @@
 import express from 'express';
 import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+dotenv.config();
 
 const app = express();
-const PORT = 5175;
-const DB_PATH = path.join(__dirname, 'src', 'services', 'db.json');
+const PORT = process.env.PORT || 5175;
+
+// Supabase Setup
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+    console.warn("⚠️ Supabase credentials missing. Server will not function correctly.");
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.use(cors());
 app.use(express.json());
 
-// Helper to read DB
-const readDB = () => {
-    if (!fs.existsSync(DB_PATH)) {
-        return { orders: [], messages: [], merchants: [], products: [] };
-    }
-    return JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
-};
+// --- Endpoints ---
 
-// Helper to write DB
-const writeDB = (data) => {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-};
+// Get all merchants
+app.get('/api/merchants', async (req, res) => {
+    const { data, error } = await supabase
+        .from('merchants')
+        .select('*');
 
-// Endpoints
-app.get('/api/merchants', (req, res) => {
-    const db = readDB();
-    res.json(db.merchants);
+    if (error) return res.status(500).json(error);
+    res.json(data);
 });
 
-app.get('/api/products/:merchantId', (req, res) => {
-    const db = readDB();
-    const products = db.products.filter(p => p.merchantId === req.params.merchantId);
-    res.json(products);
+// Get products for a merchant
+app.get('/api/products/:merchantId', async (req, res) => {
+    const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('merchant_id', req.params.merchantId);
+
+    if (error) return res.status(500).json(error);
+    res.json(data);
 });
 
-app.get('/api/orders', (req, res) => {
-    const db = readDB();
+// Get orders (optionally filtered by merchantId)
+app.get('/api/orders', async (req, res) => {
     const { merchantId } = req.query;
+    let query = supabase.from('orders').select('*').order('created_at', { ascending: false });
+
     if (merchantId && merchantId !== 'all') {
-        const filtered = db.orders.filter(o => o.merchantId === merchantId);
-        return res.json(filtered);
+        query = query.eq('merchant_id', merchantId);
     }
-    res.json(db.orders);
+
+    const { data, error } = await query;
+    if (error) return res.status(500).json(error);
+    res.json(data);
 });
 
-app.post('/api/orders', (req, res) => {
-    const db = readDB();
-    const newOrder = req.body;
-    db.orders.push(newOrder);
-    writeDB(db);
-    res.status(201).json(newOrder);
+// Create new order
+app.post('/api/orders', async (req, res) => {
+    const { data, error } = await supabase
+        .from('orders')
+        .insert([req.body])
+        .select();
+
+    if (error) return res.status(500).json(error);
+    res.status(201).json(data[0]);
 });
 
-app.patch('/api/orders/:id', (req, res) => {
-    const db = readDB();
-    const index = db.orders.findIndex(o => o.id === req.params.id);
-    if (index === -1) return res.status(404).send('Not found');
+// Update order status
+app.patch('/api/orders/:id', async (req, res) => {
+    const { data, error } = await supabase
+        .from('orders')
+        .update(req.body)
+        .eq('id', req.params.id)
+        .select();
 
-    db.orders[index] = { ...db.orders[index], ...req.body };
-    writeDB(db);
-    res.json(db.orders[index]);
+    if (error) return res.status(500).json(error);
+    res.json(data[0]);
 });
 
-app.get('/api/messages', (req, res) => {
-    const db = readDB();
-    res.json(db.messages);
+// Get WhatsApp messages
+app.get('/api/messages', async (req, res) => {
+    const { data, error } = await supabase
+        .from('wa_messages')
+        .select('*')
+        .order('timestamp', { ascending: true });
+
+    if (error) return res.status(500).json(error);
+    res.json(data);
 });
 
-app.post('/api/messages', (req, res) => {
-    const db = readDB();
-    db.messages.push(req.body);
-    writeDB(db);
-    res.status(201).json(req.body);
+// Log a WhatsApp message
+app.post('/api/messages', async (req, res) => {
+    const { data, error } = await supabase
+        .from('wa_messages')
+        .insert([req.body])
+        .select();
+
+    if (error) return res.status(500).json(error);
+    res.status(201).json(data[0]);
 });
 
 // --- Evolution API Webhook ---
-app.post('/api/whatsapp/webhook', (req, res) => {
+app.post('/api/whatsapp/webhook', async (req, res) => {
     const { event, data } = req.body;
     console.log(`Received WhatsApp Event: ${event}`);
 
@@ -91,26 +115,26 @@ app.post('/api/whatsapp/webhook', (req, res) => {
 
         console.log(`Message from ${sender}: ${text}`);
 
-        // Logic: Check for order confirmation token
         if (text.toUpperCase().includes('CONFIRM_ORDER_')) {
             const orderId = text.split('CONFIRM_ORDER_')[1]?.trim();
-            const db = readDB();
-            const orderIndex = db.orders.findIndex(o => o.id === orderId);
 
-            if (orderIndex !== -1) {
-                db.orders[orderIndex].status = 'PENDING_MERCHANT_CONFIRMATION';
-                db.orders[orderIndex].userPhone = sender;
-                db.orders[orderIndex].statusUpdatedAt = new Date().toISOString();
+            // Update order in Supabase
+            const { error: orderError } = await supabase
+                .from('orders')
+                .update({
+                    status: 'PENDING_MERCHANT_CONFIRMATION',
+                    user_phone: sender,
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', orderId);
 
-                // Also log to internal messages for visibility in wa-sim (optional but good for tracking)
-                db.messages.push({
-                    id: Date.now(),
+            if (!orderError) {
+                // Log to wa_messages for visibility
+                await supabase.from('wa_messages').insert([{
                     text: `✅ Order #${orderId} confirmed via real WhatsApp!`,
                     sender: 'bot',
                     timestamp: new Date().toISOString()
-                });
-
-                writeDB(db);
+                }]);
                 console.log(`Order #${orderId} confirmed via Webhook`);
             }
         }
@@ -120,5 +144,5 @@ app.post('/api/whatsapp/webhook', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Centralized Backend running at http://localhost:${PORT}`);
+    console.log(`🚀 Real-Time Cloud Backend running on port ${PORT}`);
 });
