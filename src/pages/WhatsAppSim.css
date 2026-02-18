@@ -1,0 +1,131 @@
+.wa-sim-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #e5ddd5;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-repeat: repeat;
+}
+
+.wa-sim-header {
+    background-color: #075e54;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.wa-sim-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #075e54;
+}
+
+.wa-chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wa-bubble {
+    max-width: 80%;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.wa-bubble.user {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    border-top-right-radius: 0;
+}
+
+.wa-bubble.bot {
+    align-self: flex-start;
+    background-color: white;
+    border-top-left-radius: 0;
+}
+
+.wa-bubble-link {
+    color: #0366d6;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 0.25rem;
+}
+
+.wa-input-area {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.wa-input {
+    flex: 1;
+    border: none;
+    border-radius: 20px;
+    padding: 0.75rem 1.25rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+.wa-send-btn {
+    background-color: #075e54;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}
+
+.wa-sim-info {
+    font-size: 0.75rem;
+    color: #000000;
+    text-align: center;
+    padding: 0.25rem;
+    background-color: #fff9c4;
+}
+
+.wa-cta-container {
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.wa-cta-button {
+    background: white;
+    color: #075e54;
+    border: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.wa-cta-button:hover {
+    background: #f9f9f9;
+}

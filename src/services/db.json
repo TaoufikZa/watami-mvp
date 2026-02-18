@@ -1,0 +1,350 @@
+{
+  "merchants": [
+    {
+      "id": "m1",
+      "slug": "demo-pizza",
+      "name": "Demo Pizza",
+      "location": {
+        "lat": 33.5731,
+        "lng": -7.5898
+      },
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=60",
+      "isOpen": true
+    },
+    {
+      "id": "m2",
+      "slug": "sushi-place",
+      "name": "Sushi Place",
+      "location": {
+        "lat": 33.5751,
+        "lng": -7.5888
+      },
+      "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=60",
+      "isOpen": true
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "merchantId": "m1",
+      "name": "Margherita Pizza",
+      "price": 60,
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "p2",
+      "merchantId": "m1",
+      "name": "Pepperoni Pizza",
+      "price": 75,
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "p3",
+      "merchantId": "m1",
+      "name": "Coca Cola",
+      "price": 15,
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "p4",
+      "merchantId": "m2",
+      "name": "Salmon Sushi (6pcs)",
+      "price": 90,
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "p5",
+      "merchantId": "m2",
+      "name": "Miso Soup",
+      "price": 30,
+      "image": "",
+      "isAvailable": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "WJYR8I3FV",
+      "merchantId": "m1",
+      "items": [
+        {
+          "id": "p1",
+          "merchantId": "m1",
+          "name": "Margherita Pizza",
+          "price": 60,
+          "image": "",
+          "isAvailable": true,
+          "qty": 1
+        }
+      ],
+      "total": 60,
+      "userAddress": "123 Test Street, Casablanca123 Test Street, Casablanca123 Test Street, Casablanca123 Test Street, Casablan123 Test St123 Test Street, CasablancacaTest Address",
+      "status": "ACCEPTED",
+      "userPhone": "+212600000000",
+      "createdAt": "2026-02-18T17:53:28.838Z",
+      "expiresAt": "2026-02-18T18:03:28.838Z",
+      "merchantSlaDeadline": "2026-02-18T17:58:28.838Z",
+      "statusUpdatedAt": "2026-02-18T17:53:53.637Z",
+      "assemblyDeadline": "2026-02-18T18:08:53.637Z"
+    },
+    {
+      "id": "QBAZ6EAW1",
+      "merchantId": "m1",
+      "items": [
+        {
+          "id": "p3",
+          "merchantId": "m1",
+          "name": "Coca Cola",
+          "price": 15,
+          "image": "",
+          "isAvailable": true,
+          "qty": 2
+        }
+      ],
+      "total": 30,
+      "userAddress": "Hlksahjlkdjasd",
+      "status": "DELIVERED",
+      "userPhone": "+212600000000",
+      "createdAt": "2026-02-18T17:57:51.161Z",
+      "expiresAt": "2026-02-18T18:07:51.161Z",
+      "merchantSlaDeadline": "2026-02-18T18:02:51.161Z",
+      "statusUpdatedAt": "2026-02-18T17:58:13.193Z",
+      "assemblyDeadline": "2026-02-18T18:12:57.565Z"
+    },
+    {
+      "id": "CWL10FJ69",
+      "merchantId": "m1",
+      "items": [
+        {
+          "id": "p3",
+          "merchantId": "m1",
+          "name": "Coca Cola",
+          "price": 15,
+          "image": "",
+          "isAvailable": true,
+          "qty": 1
+        },
+        {
+          "id": "p2",
+          "merchantId": "m1",
+          "name": "Pepperoni Pizza",
+          "price": 75,
+          "image": "",
+          "isAvailable": true,
+          "qty": 1
+        },
+        {
+          "id": "p1",
+          "merchantId": "m1",
+          "name": "Margherita Pizza",
+          "price": 60,
+          "image": "",
+          "isAvailable": true,
+          "qty": 1
+        }
+      ],
+      "total": 150,
+      "userAddress": "Test adress",
+      "status": "OUT_FOR_DELIVERY",
+      "userPhone": "+212600000000",
+      "createdAt": "2026-02-18T17:59:41.301Z",
+      "expiresAt": "2026-02-18T18:09:41.301Z",
+      "merchantSlaDeadline": "2026-02-18T18:04:41.301Z",
+      "statusUpdatedAt": "2026-02-18T17:59:50.905Z",
+      "assemblyDeadline": "2026-02-18T18:14:50.010Z"
+    },
+    {
+      "id": "QHPKUWWWB",
+      "merchantId": "m1",
+      "items": [
+        {
+          "id": "p1",
+          "merchantId": "m1",
+          "name": "Margherita Pizza",
+          "price": 60,
+          "image": "",
+          "isAvailable": true,
+          "qty": 2
+        },
+        {
+          "id": "p2",
+          "merchantId": "m1",
+          "name": "Pepperoni Pizza",
+          "price": 75,
+          "image": "",
+          "isAvailable": true,
+          "qty": 2
+        },
+        {
+          "id": "p3",
+          "merchantId": "m1",
+          "name": "Coca Cola",
+          "price": 15,
+          "image": "",
+          "isAvailable": true,
+          "qty": 2
+        }
+      ],
+      "total": 300,
+      "userAddress": "Adress test tadaaa",
+      "status": "DELIVERED",
+      "userPhone": "+212600000000",
+      "createdAt": "2026-02-18T18:07:08.411Z",
+      "expiresAt": "2026-02-18T18:17:08.411Z",
+      "merchantSlaDeadline": "2026-02-18T18:12:08.411Z",
+      "statusUpdatedAt": "2026-02-18T18:07:32.015Z",
+      "assemblyDeadline": "2026-02-18T18:22:21.762Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1771437209014,
+      "text": "✅ Order #WJYR8I3FV has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:53:29.013Z",
+      "cta": null
+    },
+    {
+      "id": 1771437233647,
+      "text": "Your order #WJYR8I3FV (1x Margherita Pizza) for MAD 60 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:53:53.647Z"
+    },
+    {
+      "id": 1771437464123,
+      "text": "Watame",
+      "sender": "user",
+      "timestamp": "2026-02-18T17:57:44.123Z"
+    },
+    {
+      "id": 1771437464943,
+      "text": "Welcome to Watami! 🍕 Looking for something to eat? Check out shops near you:",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:57:44.942Z",
+      "cta": {
+        "label": "Open Nearby Shops",
+        "link": "/nearby"
+      }
+    },
+    {
+      "id": 1771437471282,
+      "text": "✅ Order #QBAZ6EAW1 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:57:51.281Z",
+      "cta": null
+    },
+    {
+      "id": 1771437477570,
+      "text": "Your order #QBAZ6EAW1 (2x Coca Cola) for MAD 30 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:57:57.570Z"
+    },
+    {
+      "id": 1771437487497,
+      "text": "Good news! Your order #QBAZ6EAW1 is on the way! 🛵",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:58:07.497Z"
+    },
+    {
+      "id": 1771437493199,
+      "text": "Your order #QBAZ6EAW1 has been delivered. Enjoy your meal! ✅",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:58:13.199Z"
+    },
+    {
+      "id": 1771437528387,
+      "text": "Watame",
+      "sender": "user",
+      "timestamp": "2026-02-18T17:58:48.387Z"
+    },
+    {
+      "id": 1771437529231,
+      "text": "Welcome to Watami! 🍕 Looking for something to eat? Check out shops near you:",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:58:49.230Z",
+      "cta": {
+        "label": "Open Nearby Shops",
+        "link": "/nearby"
+      }
+    },
+    {
+      "id": 1771437581549,
+      "text": "✅ Order #CWL10FJ69 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:59:41.548Z",
+      "cta": null
+    },
+    {
+      "id": 1771437590014,
+      "text": "Your order #CWL10FJ69 (1x Coca Cola, 1x Pepperoni Pizza, 1x Margherita Pizza) for MAD 150 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:59:50.014Z"
+    },
+    {
+      "id": 1771437590909,
+      "text": "Good news! Your order #CWL10FJ69 is on the way! 🛵",
+      "sender": "bot",
+      "timestamp": "2026-02-18T17:59:50.909Z"
+    },
+    {
+      "id": 1771437743212,
+      "text": "Watame",
+      "sender": "user",
+      "timestamp": "2026-02-18T18:02:23.212Z"
+    },
+    {
+      "id": 1771437744033,
+      "text": "Welcome to Watami! 🍕 Looking for something to eat? Check out shops near you:",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:02:24.032Z",
+      "cta": {
+        "label": "Open Nearby Shops",
+        "link": "/nearby"
+      }
+    },
+    {
+      "id": 1771437990788,
+      "text": "Watame",
+      "sender": "user",
+      "timestamp": "2026-02-18T18:06:30.788Z"
+    },
+    {
+      "id": 1771437991689,
+      "text": "Welcome to Watami! 🍕 Looking for something to eat? Check out shops near you:",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:06:31.688Z",
+      "cta": {
+        "label": "Open Nearby Shops",
+        "link": "/nearby"
+      }
+    },
+    {
+      "id": 1771438028563,
+      "text": "✅ Order #QHPKUWWWB has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:07:08.562Z",
+      "cta": null
+    },
+    {
+      "id": 1771438041768,
+      "text": "Your order #QHPKUWWWB (2x Margherita Pizza, 2x Pepperoni Pizza, 2x Coca Cola) for MAD 300 has been confirmed! 🍕 It's being prepared.",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:07:21.768Z"
+    },
+    {
+      "id": 1771438042717,
+      "text": "Good news! Your order #QHPKUWWWB is on the way! 🛵",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:07:22.717Z"
+    },
+    {
+      "id": 1771438052021,
+      "text": "Your order #QHPKUWWWB has been delivered. Enjoy your meal! ✅",
+      "sender": "bot",
+      "timestamp": "2026-02-18T18:07:32.021Z"
+    }
+  ]
+}

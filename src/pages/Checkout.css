@@ -1,0 +1,126 @@
+.checkout-page {
+    padding: var(--space-4);
+}
+
+.checkout-header {
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.checkout-header h1 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.order-recap {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
+}
+
+.recap-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.recap-item:last-child {
+    border-bottom: none;
+}
+
+.recap-item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.recap-item-name {
+    font-weight: 600;
+}
+
+.recap-item-qty {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.recap-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-4);
+    margin-top: var(--space-2);
+    border-top: 2px solid var(--color-border);
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+}
+
+.checkout-form {
+    margin-top: var(--space-6);
+}
+
+.form-group {
+    margin-bottom: var(--space-4);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+.whatsapp-notice {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-6);
+    display: flex;
+    gap: var(--space-2);
+}
+
+.confirm-btn {
+    background-color: #25d366;
+    /* WhatsApp Green */
+    color: white;
+    width: 100%;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.confirm-btn:disabled {
+    background-color: var(--color-text-muted);
+    cursor: not-allowed;
+}

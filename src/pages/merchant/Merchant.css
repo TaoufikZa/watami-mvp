@@ -1,0 +1,164 @@
+.merchant-layout {
+    display: flex;
+    min-height: screen;
+}
+
+.merchant-sidebar {
+    width: 240px;
+    background-color: #111827;
+    /* Gray 900 */
+    color: white;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.merchant-sidebar-header {
+    padding: var(--space-6) var(--space-4);
+    border-bottom: 1px solid #374151;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.merchant-sidebar-header span {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+}
+
+.merchant-nav {
+    padding: var(--space-4) 0;
+    flex-grow: 1;
+}
+
+.merchant-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    color: #9ca3af;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.merchant-nav-item:hover,
+.merchant-nav-item.active {
+    background-color: #1f2937;
+    color: white;
+}
+
+.merchant-nav-item.active {
+    border-left: 4px solid var(--color-primary);
+}
+
+.merchant-main {
+    flex-grow: 1;
+    background-color: var(--color-background);
+}
+
+.merchant-header {
+    height: 64px;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-6);
+}
+
+.merchant-content {
+    padding: var(--space-6);
+}
+
+/* Orders Dashboard Styles */
+.order-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--color-border);
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.order-id {
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.status-badge {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-accepted {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-out-for-delivery {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.order-items-list {
+    margin-bottom: var(--space-4);
+}
+
+.order-item-inline {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-main);
+    margin-bottom: var(--space-1);
+}
+
+.order-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+}
+
+.order-total-price {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+}
+
+.order-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Product Management */
+.product-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background: white;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+    .merchant-sidebar {
+        display: none;
+    }
+}
